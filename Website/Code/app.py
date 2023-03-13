@@ -3,7 +3,7 @@ from flask import Flask, render_template
 app = Flask("testapp")
 
 #Mode modules
-localMode=False
+localMode=True
 debugMode=False
 
 #Variables
