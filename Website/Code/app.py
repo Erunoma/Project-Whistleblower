@@ -9,9 +9,7 @@ localMode=True
 debugMode=False
 
 #Variables
-publicVar=0
-appTestVar=False
-numberTest=19
+
 
 #URL's
 

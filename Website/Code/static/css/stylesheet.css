@@ -1,0 +1,62 @@
+
+
+body{
+	background-color: lightblue;
+	
+}
+h1{
+	font-size: 64px;
+	display:block;
+	margin-top: 2px;
+	text-align: center;
+
+}
+
+p{
+	font-size: 40px;
+	text-align: center;
+}
+button{
+	
+	
+	
+
+}
+
+img{
+	
+}
+nav{
+	text-align: center;
+	display: flex;
+	justify-content: center;
+}
+input[type=submit]{
+	color: black;
+	background-color: white;
+	border: 2px;
+	margin: 4px 2px;
+	padding: 16px 64px;
+	cursor: pointer;
+	text-align: center;
+	
+}
+input[type=submit]:hover{
+	background-color: lightgrey;
+}
+
+
+
+@font-face {
+  
+}
+
+/*
+https://www.w3schools.com/tags/tag_body.asp
+https://www.w3schools.com/tags/tag_hn.asp
+https://www.w3schools.com/tags/tag_p.asp
+https://www.w3schools.com/tags/tag_button.asp
+https://www.w3schools.com/tags/tag_img.asp
+https://www.w3schools.com/tags/tag_nav.asp
+*/
+
