@@ -1,4 +1,6 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request
+import connect
+import sys
 
 app = Flask("testapp")
 
@@ -8,14 +10,30 @@ debugMode=False
 
 #Variables
 publicVar=0
+appTestVar=False
+numberTest=19
 
-@app.route("/")
+#URL's
+
+
+#The main site. Here is code for a button that, when pushed, "Posts" to the server, and runs the code associated
+#with the button. 
+@app.route("/", methods=["GET", "POST"])
 def main():
-    var=0
-    var+=1
-    #To output a variable to the server, the variable needs to be sent to the HTML document
-    #in the render_template section
-    return render_template("main.html", publicVar=var)
+    if request.method== "POST":
+        return None
+    elif request.method == "GET":
+        return render_template("main.html")
+
+#This is code for the index website. app route creates the url.
+@app.route("/login", methods =["POST", "GET"])
+def login():
+    return render_template("index.html")
+
+@app.route("/index", methods =["POST", "GET"])
+def index():
+    return render_template("index.html")
+
 
 #https://stackoverflow.com/questions/31965558/how-to-display-a-variable-in-html
 #https://flask.palletsprojects.com/en/2.2.x/tutorial/templates/
@@ -32,3 +50,9 @@ else:
     app.run(host="127.0.0.1", port=5000)    
 
 #https://stackoverflow.com/questions/17309889/how-to-debug-a-flask-app
+
+"""
+    #To output a variable to the server, the variable needs to be sent to the HTML document
+    #in the render_template section
+    return render_template("main.html", appTestVar=connect.testVar)
+"""
