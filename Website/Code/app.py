@@ -20,8 +20,13 @@ numberTest=19
 #with the button. 
 @app.route("/", methods=["GET", "POST"])
 def main():
+    
     if request.method== "POST":
-        return None
+        if request.form["action1"] == "GPS":
+            lon=55.687101712605624
+            lan=12.613155975026007
+            gogurl="https://www.google.com/maps/search/?api=1&query="+str(lon)+","+str(lan)
+            return render_template("gps.html",links=gogurl)
     elif request.method == "GET":
         return render_template("main.html")
 
@@ -30,9 +35,9 @@ def main():
 def login():
     return render_template("index.html")
 
-@app.route("/index", methods =["POST", "GET"])
-def index():
-    return render_template("index.html")
+@app.route("/<name>", methods =["POST", "GET"])
+def index(name):
+    return render_template("index.html", username = name)
 
 
 #https://stackoverflow.com/questions/31965558/how-to-display-a-variable-in-html
