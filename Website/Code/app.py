@@ -25,6 +25,7 @@ def main():
             lan=12.613155975026007
             gogurl="https://www.google.com/maps/search/?api=1&query="+str(lon)+","+str(lan)
             return render_template("gps.html",links=gogurl)
+        
     elif request.method == "GET":
         return render_template("main.html")
 
@@ -51,6 +52,7 @@ elif debugMode==True:
     app.run(host="127.0.0.1", port=5000, debug=True)
 else:   
     app.run(host="127.0.0.1", port=5000)    
+
 
 #https://stackoverflow.com/questions/17309889/how-to-debug-a-flask-app
 

@@ -4,9 +4,20 @@
 {% block content %}
 <body>
     <button>
-        <a href={{links}} target="_blank" style="font-size: 40px; font-style: italic;" >View area</a>
+        <div style="position: relative;">
+            <img src="{{url_for('static', filename='images/globej.jpg')}}" alt="globe" width="100px" height="100px">
+            <a href={{links}} target="_blank" style="font-size: 25px; font-style: bold; position:absolute; left: 10px; top:40px;" >Locate:</a>
+        </div>
     </button>
-
-
 </body>
 {% endblock %}
+
+<!--https://geekpython.in/render-images-from-flask
+
+
+
+<form>
+        <input type="button" onclick="window.location.href='{{links}}'" value="locate">
+        <img src="{{url_for('static', filename='images/globej.jpg')}}" alt="globe" width="100px" height="100px">
+    </form>
+-->
