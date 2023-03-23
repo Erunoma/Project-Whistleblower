@@ -1,7 +1,8 @@
 
 
 body{
-	background-color: lightblue;
+	background-color: grey;
+	background-image: url("../images/background.jpg");
 	
 }
 h1{
@@ -13,7 +14,7 @@ h1{
 }
 
 p{
-	font-size: 40px;
+	font-size: 20px;
 	text-align: center;
 }
 button{
@@ -53,6 +54,9 @@ input[type=submit]:hover{
 	background-color: lightgrey;
 }
 
+.log{
+	border: 15px black ;
+}
 
 
 @font-face {

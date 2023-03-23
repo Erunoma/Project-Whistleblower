@@ -2,11 +2,17 @@
 
 
 {% block content %}
-<div class="container">
-    <p>Is anyone there?</p>
 
-
-
-</div>
-
+<h1>Logs</h1>
+        {% for log in db_show %}
+        <div class="log">
+        
+              <p>id: {{log["id"]}}</p>
+              <p>lotCor: {{log["lotCor"]}}</p>
+              <p>latCor:  {{log["latCor"]}}</p>
+              <p>macAdd: {{log['macAdd']}}</p>	
+              <p>dateTime: {{log['datetime']}}</p>	
+         </div>
+        {% endfor %}
 {% endblock %}
+
