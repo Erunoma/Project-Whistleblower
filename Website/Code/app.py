@@ -67,26 +67,21 @@ def init_socket():
     global s
     s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     s.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
-  
-    if localMode==True:
-        s.bind((socket.gethostname(), 4000)) 
-    else:
-        s.bind(("", 3000))
-        print("binded online")
+    s.bind(("", 3000))
+    print("Listening...")
     s.listen()
-    print("initilized")
     while True:
-        print("hello")
         clientsocket, address = s.accept()
         print(f"Connection from {address} has been established")
-        stringToSend="Welcome to the server"
+        stringToSend="Your call has been recieved."
+        datafromClient=clientsocket.recv(1024).decode()
         clientsocket.send(stringToSend.encode())
-        print("hello")
-
-
-
-
-
+        print(datafromClient)
+        
+       
+        
+   
+#https://docs.python.org/3/library/socket.html#creating-sockets
 #https://www.digitalocean.com/community/tutorials/how-to-use-an-sqlite-database-in-a-flask-application
 #https://flask.palletsprojects.com/en/2.2.x/patterns/sqlite3/
 #The main site. Here is code for a button that, when pushed, "Posts" to the server, and runs the code associated
