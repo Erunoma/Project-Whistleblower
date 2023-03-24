@@ -5,8 +5,9 @@ from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 import sqlite3 
 from flask import g
-
-
+import socket
+from threading import Thread
+import threading
 
 
 app = Flask("testapp")
@@ -17,6 +18,7 @@ debugMode=False
 dbTestMode=True
 createNewTable=False
 
+
 imported_id = 0
 imported_lotCor = 0.0
 imported_latCor= 0.0
@@ -24,10 +26,6 @@ imported_macAdd = "0.0.0.0.0.0"
 imported_dateTime= "2/3"
 
 whistlebase = sqlite3.connect('whistlebase.db', check_same_thread=False)
-
-
-
-
 
 def create_table():
     cur = whistlebase.cursor()
@@ -64,7 +62,28 @@ if dbTestMode == True:
     add_db_data()
     get_db_connection()
 
-    
+
+def init_socket():
+    global s
+    s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    s.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+  
+    if localMode==True:
+        s.bind((socket.gethostname(), 4000)) 
+    else:
+        s.bind(("", 3000))
+        print("binded online")
+    s.listen()
+    print("initilized")
+    while True:
+        print("hello")
+        clientsocket, address = s.accept()
+        print(f"Connection from {address} has been established")
+        clientsocket.send(bytes("Welcome to the server"), "utf-8")
+        print("hello")
+
+
+
 
 
 #https://www.digitalocean.com/community/tutorials/how-to-use-an-sqlite-database-in-a-flask-application
@@ -73,8 +92,6 @@ if dbTestMode == True:
 #with the button. 
 @app.route("/", methods=["GET", "POST"])
 def main():
-    
-
 #https://pythonbasics.org/flask-sqlite/
     if request.method== "POST":
         if request.form["action1"] == "GPS":
@@ -95,7 +112,6 @@ def main():
     elif request.method == "GET":
         return render_template("main.html")
     
-  
 
 #https://stackoverflow.com/questions/31965558/how-to-display-a-variable-in-html
 #https://flask.palletsprojects.com/en/2.2.x/tutorial/templates/
@@ -105,18 +121,20 @@ def main():
 #If debug mode is enabled, the site will be hosted locally in debug mode.
 if localMode==False:
     if __name__=="__main__":
+        th = Thread(target=init_socket)
+        th.start()
         app.run(host="0.0.0.0", port=80)
+        th.join()
+        
 elif debugMode==True:
     if __name__=="__main__":
         app.run(host="127.0.0.1", port=5000, debug=True)
+        
 else:
     if __name__=="__main__":   
-      
-        app.run(host="127.0.0.1", port=5000)    
+        app.run(host="127.0.0.1", port=5000) 
+   
 
 #https://stackoverflow.com/questions/17309889/how-to-debug-a-flask-app
-
-
-
 
 

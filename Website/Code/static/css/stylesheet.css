@@ -58,6 +58,12 @@ input[type=submit]:hover{
 	border: 15px black ;
 }
 
+table{
+	border: 1px solid;
+}
+th{
+	border: 1px solid;
+}
 
 @font-face {
   
