@@ -79,7 +79,8 @@ def init_socket():
         print("hello")
         clientsocket, address = s.accept()
         print(f"Connection from {address} has been established")
-        clientsocket.send(bytes("Welcome to the server"), "utf-8")
+        stringToSend="Welcome to the server"
+        clientsocket.send(stringToSend.encode())
         print("hello")
 
 
