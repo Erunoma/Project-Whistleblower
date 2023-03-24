@@ -10,6 +10,7 @@ from threading import Thread
 import threading
 
 
+
 app = Flask("testapp")
 
 #Mode modules
@@ -24,6 +25,7 @@ imported_lotCor = 0.0
 imported_latCor= 0.0
 imported_macAdd = "0.0.0.0.0.0"
 imported_dateTime= "2/3"
+sentdata=[]
 
 whistlebase = sqlite3.connect('whistlebase.db', check_same_thread=False)
 
@@ -74,9 +76,14 @@ def init_socket():
         clientsocket, address = s.accept()
         print(f"Connection from {address} has been established")
         stringToSend="Your call has been recieved."
+        sentdata= [str(i) for i in clientsocket.recv(2048).decode("utf-8").split("\n")]
+        print(sentdata)
         datafromClient=clientsocket.recv(1024).decode()
         clientsocket.send(stringToSend.encode())
+        s.close()
         print(datafromClient)
+
+
         
        
         
