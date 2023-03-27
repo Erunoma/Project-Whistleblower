@@ -118,10 +118,7 @@ def convert_and_apply():
         add_db_data()
     except Exception as e: print("An error has occured: ",e)
      
-       
-    
-    
-    
+
 def init_thread():
     th = Thread(target=init_socket)
     th.start()
@@ -129,8 +126,6 @@ def init_thread():
     print("New thread started")
         
        
-        
-   
 #https://docs.python.org/3/library/socket.html#creating-sockets
 #https://www.digitalocean.com/community/tutorials/how-to-use-an-sqlite-database-in-a-flask-application
 #https://flask.palletsprojects.com/en/2.2.x/patterns/sqlite3/

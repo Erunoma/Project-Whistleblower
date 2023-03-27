@@ -2,13 +2,19 @@
 
 
 {% block content %}
+
+<h1>GPS</h1>
+
 <body>
-    <button>
-        <div style="position: relative;">
-            <img src="{{url_for('static', filename='images/globej.jpg')}}" alt="globe" width="100px" height="100px">
-            <a href={{links}} target="_blank" style="font-size: 25px; font-style: bold; position:absolute; left: 10px; top:40px;" >Locate:</a>
-        </div>
-    </button>
+
+        <p>This page has the newest location of an incident. Click the link below to get location</p>
+        <p>|</p>
+        <p>\/</p>
+        <img src="{{url_for('static', filename='images/globej.jpg')}}" alt="globe" width="100px" height="100px" style="margin-left: auto; margin-right: auto;">
+        <br></br>
+        <a href={{links}} target="_blank" style="font-size: 40px; margin-left: auto; margin-bottom: auto;">Locate:</a>
+
+    
 </body>
 {% endblock %}
 

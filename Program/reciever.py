@@ -4,10 +4,9 @@ debug=True
 
 def init_data(deviceID, lot, lat ,macAdd, curTime):
     global newdata
-    
     newdata=[deviceID, lot,lat, macAdd, curTime]
-    
     print("added values")
+    send_data()
 
     
 def send_data():
@@ -26,7 +25,6 @@ def send_data():
 
 if debug==True:
     init_data(30,12.613155975026007,55.687101712605624,"Mac adress goes here:", "10:30 3/1")
-    send_data()
     print("started debug")
     
 """
