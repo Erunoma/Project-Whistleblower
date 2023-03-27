@@ -38,7 +38,16 @@ button{
 }
 
 img{
-	
+	display: block;
+	text-align: center;
+	margin-left: auto;
+	margin-right: auto;
+}
+a{
+	font-size: 40px; 
+	text-align: center;
+	display: block;
+
 }
 .glober{
 	margin-left: auto;
