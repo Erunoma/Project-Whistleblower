@@ -19,12 +19,15 @@ debugMode=False
 dbTestMode=True
 createNewTable=False
 
+isDatabaseBusy = False
+
 
 imported_id = 0
 imported_lotCor = 0.0
 imported_latCor= 0.0
 imported_macAdd = "0.0.0.0.0.0"
 imported_dateTime= "2/3"
+global sentdata
 sentdata=[]
 
 whistlebase = sqlite3.connect('whistlebase.db', check_same_thread=False)
@@ -36,12 +39,18 @@ def create_table():
     print("A new table has been created")
 
 def add_db_data():
+    global imported_id
+    global imported_lotCor
+    global imported_latCor
+    global imported_macAdd
+    global imported_dateTime
     cur = whistlebase.cursor()
     cur.execute("INSERT INTO log (id, lotCor, latCor, macAdd, datetime) VALUES (?, ?, ?, ?, ?)",
             (imported_id, imported_lotCor, imported_latCor, imported_macAdd, imported_dateTime))
     
     whistlebase.commit()
     print("new log has been added")
+
 
 def get_db_connection():
     conn = sqlite3.connect('whistlebase.db')
@@ -60,13 +69,16 @@ if createNewTable == True:
 
 if dbTestMode == True:
     clear_db()
-    add_db_data()
-    add_db_data()
+    #add_db_data()
+    #add_db_data()
     get_db_connection()
 
 
 def init_socket():
     global s
+    global newSentData
+
+    
     s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     s.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
     s.bind(("", 3000))
@@ -78,12 +90,43 @@ def init_socket():
         stringToSend="Your call has been recieved."
         sentdata= [str(i) for i in clientsocket.recv(2048).decode("utf-8").split("\n")]
         print(sentdata)
-        datafromClient=clientsocket.recv(1024).decode()
+        newSentData = sentdata
+        convert_and_apply()
+        stringToSend="Data has been recieved."
         clientsocket.send(stringToSend.encode())
         s.close()
-        print(datafromClient)
+        init_thread()
+        
+def convert_and_apply():
+    global imported_id
+    global imported_lotCor
+    global imported_latCor
+    global imported_macAdd
+    global imported_dateTime
+    global newSentData
+    print("Converting...")
+    print("This is the new sent data in convert : ",newSentData)
 
+    try:
+        imported_id = int(newSentData[0])
+        imported_lotCor = float(newSentData[1])
+        imported_latCor = float(newSentData[2])
+        imported_macAdd = str(newSentData[3])
+        imported_dateTime = str(newSentData[4])
+        print(f"Data retrieved from device: \n {imported_id} \n {imported_lotCor} \n {imported_latCor} \n {imported_macAdd} \n {imported_dateTime} \n ")
 
+        add_db_data()
+    except Exception as e: print("An error has occured: ",e)
+     
+       
+    
+    
+    
+def init_thread():
+    th = Thread(target=init_socket)
+    th.start()
+    th.join()
+    print("New thread started")
         
        
         
@@ -98,8 +141,8 @@ def main():
 #https://pythonbasics.org/flask-sqlite/
     if request.method== "POST":
         if request.form["action1"] == "GPS":
-            lon=55.687101712605624
-            lan=12.613155975026007
+            lon=imported_lotCor
+            lan=imported_latCor
             gogurl="https://www.google.com/maps/search/?api=1&query="+str(lon)+","+str(lan)
             return render_template("gps.html",links=gogurl)
         if request.form["action1"] == "Database":
@@ -126,8 +169,10 @@ if localMode==False:
     if __name__=="__main__":
         th = Thread(target=init_socket)
         th.start()
+        print("Thread startup")
         app.run(host="0.0.0.0", port=80)
         th.join()
+        
         
 elif debugMode==True:
     if __name__=="__main__":
