@@ -1,0 +1,29 @@
+{% extends 'main.html' %}
+
+
+{% block content %}
+
+<h1>Logs</h1>
+        {% for log in db_show %}
+        <div class="log">
+                <table>
+                        <tr>
+                                <th>Device ID</th>
+                                <th>Longtitude</th>
+                                <th>Langtitude</th>
+                                <th>MAC</th>
+                                <th>Time</th>
+                        </tr>
+                        <tr>
+                                <th>{{log["id"]}}</th>
+                                <th>{{log["lotCor"]}}</th>
+                                <th>{{log["latCor"]}}</th>
+                                <th>{{log['macAdd']}}</th>
+                                <th>{{log['datetime']}}</th>
+                        </tr>
+                </table>
+         </div>
+         <br></br>
+        {% endfor %}
+{% endblock %}
+
