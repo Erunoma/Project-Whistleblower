@@ -24,11 +24,12 @@ button{
 	color: black;
 	background-color: white;
 	border: 6px;
+	border-color: black;
+	border-radius: 20px;
 	margin: 4px 2px;
 	padding: 16px 64px;
 	cursor: pointer;
 	text-align: center;	
-
 }
 
 .submit{
@@ -47,6 +48,7 @@ a{
 	font-size: 40px; 
 	text-align: center;
 	display: block;
+	color: black;
 
 }
 .glober{
@@ -72,19 +74,30 @@ input[type=submit]{
 	padding: 16px 64px;
 	cursor: pointer;
 	text-align: center;	
+	
 }
 input[type=submit]:hover{
 	background-color: lightgrey;
 	border: 2px;
 }
 
+
 .log{
 	border: 15px black ;
 }
 .LogButton{
-	width: 80%;
+
+
+	cursor: pointer;
+	text-align: center;	
 	margin-left: auto;
 	margin-right: auto;
+	display: block;
+
+}
+.LogButton:hover{
+	background-color: lightgrey;
+	border: 3px;
 }
 
 table{

@@ -24,7 +24,7 @@ def send_data():
     print("values sent")
 
 if debug==True:
-    init_data(30,12.613155975026007,55.687101712605624,"Mac adress goes here:", "10:30 3/1")
+    init_data(29,55.671170,12.522459,"Mac adress goes here:", "10:30 3/1")
     print("started debug")
     
 """
