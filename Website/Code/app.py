@@ -151,13 +151,19 @@ def main():
             lon=imported_lotCor
             lan=imported_latCor
             gogurl="https://www.google.com/maps/search/?api=1&query="+str(lon)+","+str(lan)
+       
             return render_template("gps.html",links=gogurl)
         if request.form["action1"] == "Database":
             whistlebase.row_factory = sqlite3.Row
             cur = whistlebase.cursor()
             db_show = cur.execute("SELECT * FROM log").fetchall()
             cur.close()
-            return render_template("database.html", db_show=db_show)
+            print(str(db_show))
+            mapLinks=[]
+            for log in db_show:
+                mapLinks.append("https://www.google.com/maps/search/?api=1&query="+str(log["lotCor"])+","+str(log["latCor"]))
+            print(mapLinks)
+            return render_template("database.html", db_show=db_show, mapLinks=mapLinks)
         
         if request.form["action1"] == "Profiles":
             return render_template("profiles.html")

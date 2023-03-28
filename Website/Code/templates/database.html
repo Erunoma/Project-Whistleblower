@@ -5,7 +5,10 @@
 
 <h1>Logs</h1>
         {% for log in db_show %}
+        {% set count = loop.index0 %}
         <div class="log">
+                <p>{{count}}</p>
+
                 <table>
                         <tr>
                                 <th>Device ID</th>
@@ -22,6 +25,9 @@
                                 <th>{{log['datetime']}}</th>
                         </tr>
                 </table>
+                <button class="LogButton">
+                        <a href = "{{mapLinks[count]}}" target="_blank">Locate:</a>
+                </button>
          </div>
          <br></br>
         {% endfor %}
