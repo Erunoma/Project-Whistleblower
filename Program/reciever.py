@@ -13,7 +13,7 @@ def send_data():
     s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     s.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
 
-    s.connect(("10.136.132.49", 3000))
+    s.connect(("192.168.1.187", 3000))
 
     sentdata=newdata
     print(sentdata)
@@ -24,7 +24,7 @@ def send_data():
     print("values sent")
 
 if debug==True:
-    init_data(30,12.613155975026007,55.687101712605624,"Mac adress goes here:", "10:30 3/1")r
+    init_data(30,12.613155975026007,55.687101712605624,"Mac adress goes here:", "10:30 3/1")
     print("started debug")
     
 """
