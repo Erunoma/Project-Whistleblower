@@ -1,7 +1,7 @@
 from machine import Pin, ADC
 from time import sleep
 
-# pin objekt
+# pin object
 analog_pin = ADC(Pin(34))
 # ADC range
 analog_pin.atten(ADC.ATTN_11DB)

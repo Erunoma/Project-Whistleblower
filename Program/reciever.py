@@ -1,8 +1,10 @@
 import socket
 
-debug=True
+debug=False
+
 
 def init_data(deviceID, lot, lat ,macAdd, curTime):
+    
     global newdata
     newdata=[deviceID, lot,lat, macAdd, curTime]
     print("added values")
@@ -13,7 +15,7 @@ def send_data():
     s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     s.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
 
-    s.connect(("192.168.1.187", 3000))
+    s.connect(("192.168.137.144", 3000))
 
     sentdata=newdata
     print(sentdata)
@@ -21,7 +23,7 @@ def send_data():
 
     msg = s.recv(1024).decode("utf-8")
     print(msg)
-    print("values sent")
+    print("values ssent")
 
 if debug==True:
     init_data(30,12.613155975026007,55.687101712605624,"Mac adress goes here:", "10:30 3/1")
