@@ -1,8 +1,8 @@
 import time
 from netværk import net_connect
 from knap_1 import pressed_once
-from knap_2 import pressed_twice
-#from knap_3 import pressed_third
+#from knap_2 import pressed_twice
+#cfrom knap_3 import pressed_third
 #from reciver import init_data, send_data
 from machine import Pin
 
@@ -54,16 +54,18 @@ def script_switch():
             # fra knap_2 fil.        
             if  press_count == 2  and (time.time()-second_time)>1.5:
                 if kør_en_gang:
-                    pressed_twice()
+                    #pressed_twice()
+                    print('2')
                     kør_en_gang = False
             # er der i perioden talt 3 klik, køres funktionen
             # fra knap_2 fil samt fra knap_3.
             if press_count == 3 and (time.time()-second_time)>1.5:
                 if kør_en_gang:
-                    pressed_twice()
-                    pressed_third()
-                    init_data()
-                    send_data()
+                    #pressed_twice()
+                    #pressed_third()
+                    #init_data()
+                    #send_data()
+                    print('3')
                     kør_en_gang = False
         # tæller og timer nulstilles        
         print("nået til slut")

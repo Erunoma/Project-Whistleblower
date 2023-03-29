@@ -2,13 +2,12 @@ from machine import Pin
 from machine import PWM
 from time import sleep
 
-# buzzer objekt 
-buzzer_pin = Pin(25, Pin.OUT)
-pwm_buzz = PWM(buzzer_pin)
+# buzzer object 
+#buzzer_pin = Pin(27, Pin.OUT, value=0)
+#pwm_buzz = PWM(buzzer_pin)
 
-# funktionen der fastsætter de forskellige parametre
-# som buzzeren skal bruge. så man kan senere kan
-# nøjes med at give argumenterne til funktionen 
+# function that contain the arguments the buzzer needs. 
+# later it's just a questino to give the arguments to the function.
 def buzzer(buzzerPinObject, frequency, sound_duration, silence_duration):
     buzzerPinObject.duty(512)
     buzzerPinObject.freq(frequency)
@@ -16,9 +15,10 @@ def buzzer(buzzerPinObject, frequency, sound_duration, silence_duration):
     buzzerPinObject.duty(0)
     sleep(silence_duration)
 
-# Funktionen der kalder de forskellige toner.
-# det er denne funktion der bliver kaldt i main filen. 
-def pressed_twice():
+# Buzzer function calling the different notes.
+# it is the pressed_twice() function that is called in
+# the main file. 
+def pressed_twice(pwm_buzz):
     buzzer(pwm_buzz, 440, 0.2, 0.2)
     buzzer(pwm_buzz, 440, 0.2, 0.2)
     buzzer(pwm_buzz, 440, 0.2, 0.2)
@@ -26,4 +26,5 @@ def pressed_twice():
     buzzer(pwm_buzz, 440, 0.2, 0.2)
     buzzer(pwm_buzz, 440, 0.2, 0.2)
     buzzer(pwm_buzz, 440, 0.2, 0.2)
+
 
