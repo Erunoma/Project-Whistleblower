@@ -3,9 +3,9 @@ from machine import Pin
 from time import sleep
 
 # Led objects
-red_led = Pin(5, Pin.OUT)
+red_led = Pin(19, Pin.OUT)
 yellow_led = Pin(18, Pin.OUT)
-green_led = Pin(19, Pin.OUT)
+green_led = Pin(5, Pin.OUT)
 
 def pressed_zero():
     red_led.on()

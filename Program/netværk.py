@@ -1,6 +1,6 @@
 import ubinascii
 import network
-import urequests
+#import urequests
 from time import sleep
 
 import esp
@@ -16,12 +16,16 @@ password = 'Knufk8h#'
 
 # function is called in main file.
 def net_connect():
+    
     try:
-        
         # For ESP to connect
+       
         station = network.WLAN(network.STA_IF)
         station.active(True)
         station.connect(ssid, password)
+        WLAN.config(txpower = 0) # tilføjet lavere strøm på wifi
+        WLAN.mode(network.WLAN.N)
+        #WLAN().mode(network.WLAN.N)
     except:
         while station.isconnected() == False:
             print('.', end='')

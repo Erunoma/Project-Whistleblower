@@ -19,6 +19,7 @@ def buzzer(buzzerPinObject, frequency, sound_duration, silence_duration):
 # it is the pressed_twice() function that is called in
 # the main file. 
 def pressed_twice(pwm_buzz):
+    """takes a pwm_buzz object"""
     buzzer(pwm_buzz, 440, 0.2, 0.2)
     buzzer(pwm_buzz, 440, 0.2, 0.2)
     buzzer(pwm_buzz, 440, 0.2, 0.2)

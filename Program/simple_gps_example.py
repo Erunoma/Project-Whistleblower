@@ -27,16 +27,20 @@ def gps_main():
             formattedlat = formattedlat[:-3]
             formattedlon = gps.longitude_string()
             formattedlon = formattedlon[:-3]
-            print(formattedlon)
+            #print(formattedlon)
+            formattedtime = gps.timestamp
+            formatteddate = gps.date_string('long')
             knap_3.get_locate(formattedlon, formattedlat)
-
+            knap_3.get_time_and_date(formatteddate, formattedtime)
+            #print(formatteddate)
+            #print(formattedtime)
             
             #print('lat:', formattedlat)s
             #print('lon:', formattedlon)
             
             time.sleep(2)
 
-
+#gps_main()
 
 
 
